@@ -2,12 +2,17 @@ package com.alabelewe.learningmanagementsystem.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Repository;
 
+
+@Repository
 public class UserDaoImpl implements UserDAO{
 
     private EntityManager entityManager;
 
+    @Autowired
     public UserDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
