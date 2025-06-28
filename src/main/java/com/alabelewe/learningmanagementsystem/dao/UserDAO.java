@@ -1,9 +1,9 @@
 package com.alabelewe.learningmanagementsystem.dao;
 
-import org.springframework.security.core.userdetails.User;
+import com.alabelewe.learningmanagementsystem.entity.User;
 
 public interface UserDAO {
 
-    public User findUserByName(String name);
+    public User findUserByUsername(String name);
 
 }

@@ -1,9 +1,9 @@
 package com.alabelewe.learningmanagementsystem.dao;
 
+import com.alabelewe.learningmanagementsystem.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 
@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDAO{
     }
 
     @Override
-    public User findUserByName(String userName) {
+    public com.alabelewe.learningmanagementsystem.entity.User findUserByUsername(String userName) {
         TypedQuery<User> query = entityManager.createQuery("from User where username=:uName", User.class);
 
         query.setParameter("uName", userName);

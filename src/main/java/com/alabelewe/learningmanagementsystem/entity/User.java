@@ -2,6 +2,8 @@ package com.alabelewe.learningmanagementsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 @Table(name="user")
 public class User{
@@ -20,6 +22,14 @@ public class User{
     @Column(name="enabled")
     private boolean enabled;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
+
+
+
     public User() {
 
     }
@@ -31,6 +41,13 @@ public class User{
         this.enabled = enabled;
     }
 
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
     public int getId() {
         return id;
     }
