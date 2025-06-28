@@ -34,6 +34,15 @@ public class ProductRestController {
         return product;
     }
 
+    @PostMapping("/products")
+    public Product addProduct(@RequestBody Product product) {
+        product.setId(0);
+
+        Product product1 = productService.saveProduct(product);
+
+        return product1;
+    }
+
     @PutMapping("/products")
     public Product updateProduct(@RequestBody Product product) {
         Product product1 = productService.saveProduct(product);
