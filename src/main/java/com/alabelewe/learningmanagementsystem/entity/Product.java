@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="projects")
+@Table(name="products")
 public class Product{
 
     @Id
@@ -22,7 +22,7 @@ public class Product{
     @Column(name="price")
     private double price;
 
-    @Column(name="createAt")
+    @Column(name="created_at")
     private Date createAt;
 
     @Column(name="status")
