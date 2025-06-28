@@ -4,9 +4,7 @@ package com.alabelewe.learningmanagementsystem.rest;
 import com.alabelewe.learningmanagementsystem.entity.Product;
 import com.alabelewe.learningmanagementsystem.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,36 @@ public class ProductRestController {
     @GetMapping("/products")
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/products/{productId}")
+    public Product getProductById(@PathVariable("productId") int productId) {
+        Product product = productService.getProductById(productId);
+
+        if(product == null){
+            throw new RuntimeException("Product not found");
+        }
+        return product;
+    }
+
+    @PutMapping("/products")
+    public Product updateProduct(@RequestBody Product product) {
+        Product product1 = productService.saveProduct(product);
+
+        if(product1 == null){
+            throw new RuntimeException("Product not found");
+        }
+        return product1;
+    }
+
+    @DeleteMapping("/products/{productId}")
+    public String deleteProduct(@PathVariable("productId") int productId) {
+        Product product = productService.getProductById(productId);
+        if(product == null){
+            throw new RuntimeException("Product not found");
+        }
+        productService.deleteProduct(productId);
+
+        return "Deleted product ID " + productId;
     }
 }
